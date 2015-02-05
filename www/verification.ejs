@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phone Verification</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	@import url(http://fonts.googleapis.com/css?family=Lato:100|Roboto:100|Open+Sans:300);
+
+		@-webkit-keyframes animation-rotate {
+		  100% {
+		    -webkit-transform: rotate(360deg);
+		  }
+		}
+		@-moz-keyframes animation-rotate {
+		  100% {
+		    -moz-transform: rotate(360deg);
+		  }
+		}
+		@-o-keyframes animation-rotate {
+		  100% {
+		    -o-transform: rotate(360deg);
+		  }
+		}
+		@keyframes animation-rotate {
+		  100% {
+		    transform: rotate(360deg);
+		  }
+		}
+		* {
+		  box-sizing: border-box;
+		  -moz-box-sizing: border-box;
+		  -webkit-box-sizing: border-box;
+		}
+		button {
+		  appearance: none;
+		  -webkit-appearance: none;
+		  border: none;
+		  cursor: pointer;
+		}
+		button,
+		button span {
+		  position: relative;
+		}
+		button span {
+		  white-space: nowrap;
+		  display: block;
+		}
+		button::moz-focus-inner {
+		  padding: 0;
+		  border: 0;
+		}
+		button:focus {
+		  outline: none;
+		}
+		html,
+		body {
+		  border: 0;
+		  margin: 0px;
+		  height: 100%;
+		  /*background: url("http://ununsplash.imgix.net/5/unsplash-bonus.jpg?q=75&fm=jpg&s=816c3ecfd6f8058450e6ae250fac7141");*/
+		  background: linear-gradient(to bottom right, rgba(236, 240, 241, 0.55), rgba(255, 255, 255, 0.85))no-repeat center center fixed, url("http://ununsplash.imgix.net/5/unsplash-bonus.jpg?q=75&fm=jpg&s=816c3ecfd6f8058450e6ae250fac7141")
+		  no-repeat center center fixed;
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover;
+		}
+		body {
+		  padding: 50px;
+		  text-align: center;
+		 /* background: rgba(255, 255, 255, 0.85);*/
+		}
+		body h1 {
+		  /*padding: 50px;*/
+		  padding: 20px;
+		  font: 100 72px Roboto, "Helvetica Neue", sans-serif;
+		  text-align: center;
+		  color: transparent;
+		  -webkit-background-clip: text;
+		  -moz-background-clip: text;
+		  background-clip: text;
+		  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMSAxIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48bGluZWFyR3JhZGllbnQgaWQ9Imxlc3NoYXQtZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM5NDdiYzEiIHN0b3Atb3BhY2l0eT0iMSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzMzYWNkNCIgc3RvcC1vcGFjaXR5PSIxIi8+PC9saW5lYXJHcmFkaWVudD48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2xlc3NoYXQtZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
+		  background-image: -webkit-linear-gradient(top, #947bc1 -10%, #33acd4 100%);
+		  background-image: -moz-linear-gradient(top, #947bc1 -10%, #33acd4 100%);
+		  background-image: -o-linear-gradient(top, #947bc1 -10%, #33acd4 100%);
+		  background-image: linear-gradient(to bottom, #947bc1 -10%, #33acd4 100%);
+		}
+		body p{
+			padding: 20px;
+			font-family: 'Open Sans';
+			color: #3B78E7;
+		}
+		/* Button */
+	    .button {
+	      display: inline-block;
+	      position: relative;
+	      width: 180px;
+	      height: 40px;
+	      line-height: 40px;
+	      border-radius: 2px;
+	      font-size: 1em;
+	      background-color: #fff;
+	      color: #646464;
+	    }
+	    
+	    .button > paper-ripple {
+	      border-radius: 2px;
+	      overflow: hidden;
+	    }
+	    
+	    .button.narrow {
+	      width: 60px;
+	    }
+	    
+	    .button.grey {
+	      background-color: #eee;
+	    }
+	    
+	    .button.blue {
+	      background-color: #4285f4;
+	      color: #fff;
+	    }
+	    
+	    .button.green {
+	      background-color: #0f9d58;
+	      color: #fff;
+	    }
+	    
+	    .button.raised {
+	      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	      transition-delay: 0.2s;
+	      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	    }
+	    
+	    .button.raised:active {
+	      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+	      transition-delay: 0s;
+	    }
+		.button--loading {
+		  /*background-color: #258cd1 !important;
+		  background-image: -webkit-linear-gradient(#258cd1 0%, #258cd1 100%) !important;
+		  background-image: -moz-linear-gradient(#258cd1 0%, #258cd1 100%) !important;
+		  background-image: -o-linear-gradient(#258cd1 0%, #258cd1 100%) !important;
+		  background-image: linear-gradient(#258cd1 0%, #258cd1 100%) !important;*/
+		  position: relative;
+		  cursor: wait;
+		}
+		.button--loading:before {
+		  margin: -13px 0 0 -13px;
+		  width: 24px;
+		  height: 24px;
+		  position: absolute;
+		  left: 50%;
+		  top: 50%;
+		  content: '';
+		  -webkit-border-radius: 24px;
+		  -webkit-background-clip: padding-box;
+		  -moz-border-radius: 24px;
+		  -moz-background-clip: padding;
+		  border-radius: 24px;
+		  background-clip: padding-box;
+		  border: rgba(255, 255, 255, 0.25) 2px solid;
+		  border-top-color: #ffffff;
+		  -webkit-animation: animation-rotate 750ms linear infinite;
+		  -moz-animation: animation-rotate 750ms linear infinite;
+		  -o-animation: animation-rotate 750ms linear infinite;
+		  animation: animation-rotate 750ms linear infinite;
+		}
+		.button--loading span,
+		.button--loading:hover span,
+		.button--loading:active span {
+		  color: transparent;
+		  text-shadow: none;
+		}
+		/* Misc */
+	    .center {
+	      text-align: center;
+	      font-family: 'Open Sans', sans-serif;
+	    }
+	    
+	    .label {
+	      padding: 0 16px;
+	    }
+	    
+	    .label-blue {
+	      color: #4285f4; 
+	    }
+	    
+	    .label-red {
+	      color: #d23f31; 
+	    }
+	    ::selection {
+		  background: #CE023E; /* WebKit/Blink Browsers */
+		  color: white;
+		}
+		::-moz-selection {
+		  background: #CE023E; /* Gecko Browsers */
+		  color: white;
+		}
+		input[type="text"] {
+			font-family: Open Sans;
+			font-size: 16px;
+			padding: 14px;
+			text-align: center;
+			color: #333;
+			width: 225px;
+			border:none;
+			outline: none;
+		}
+		::-webkit-input-placeholder {
+		   text-align: center;
+		}
+
+		:-moz-placeholder { /* Firefox 18- */
+		   text-align: center;  
+		}
+
+		::-moz-placeholder {  /* Firefox 19+ */
+		   text-align: center;  
+		}
+
+		:-ms-input-placeholder {  
+		   text-align: center; 
+		}
+		@media screen and (min-width: 768px) and (max-width: 900px) {    
+			   body h1 {
+				  font: 100 45px Roboto, "Helvetica Neue", sans-serif;
+				  text-align: center;
+				} 
+		}
+		@media screen and (max-width: 480px) {
+    		body h1 {
+    			font: 100 30px Roboto, "Helvetica Neue", sans-serif;
+    			color: #333333;
+    			background-image: none;
+    		}
+    		#users{
+    			padding-bottom : 25px;
+    		}
+    	}
+	</style>
+</head>
+<body>
+<h1>Get invited to the summit</h1>
+<p>GDC Summit in 2015/3/4, at CSIE Classroom J602. look <a href="#">Shlideshare</a></p>
+<form id='users' active='device/ace.html' method='get'>
+<div class="inputs" id="call-to-action" onclick="zero"><input maxlength="4" type="text" name="email" placeholder="Enter the Code"><br><br><button class="button raised blue">OK!</button></div>
+</form>
+</body>
+</html>

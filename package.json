@@ -1,0 +1,29 @@
+{
+  "name": "2015-GDC-Semester-Summit",
+  "version": "1.0.0",
+  "description": "Fotech Game Design Club 2015 Semester Summit Website",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^3.4.8",
+    "microdatabase": "^0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/LoliLab/2015-Semester-Summit"
+  },
+  "keywords": [
+    "phone",
+    "message",
+    "sender"
+  ],
+  "author": "MacTaylor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoliLab/2015-Semester-Summit/issues"
+  },
+  "homepage": "https://github.com/LoliLab/2015-Semester-Summit"
+}
